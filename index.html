@@ -87,14 +87,14 @@
 			</td>
 		</tr>
 		<tr>
-			<td><button class="cl-button">AC</button></td>
+			<td><button class="cl-button">C</button></td>
 			<td><button class="op-button">(</button></td>
 			<td><button class="op-button">)</button></td>
 			<td><button class="ed-button">⌫</button></td>
 		</tr>
 		<tr>
-			<td><button class="cl-button">C</button></td>
 			<td><button class="op-button">π</button></td>
+			<td><button class="op-button">% r</button></td>
 			<td><button class="op-button">^</button></td>
 			<td><button class="op-button">÷</button></td>
 		</tr>
@@ -136,9 +136,6 @@
 		item.addEventListener('click', (event) => {
 			inputValue = event.target.innerText;
 			switch (inputValue) {
-				case 'AC':
-					location.reload();
-					break;
 				case 'C':
 					inputs = '';
 					screen.value = inputs;
@@ -149,6 +146,10 @@
 					break;
 				case 'π':
 					inputs += '*3.1416';
+					screen.value = inputs;
+					break;
+				case '% r':
+					inputs += '%';
 					screen.value = inputs;
 					break;
 				case '^':
@@ -164,8 +165,8 @@
 					screen.value = inputs;
 					break;
 				case '=':
-					inputs = eval(inputs);
-					screen.value = inputs;
+					screen.value = eval(inputs);
+					inputs = screen.value;
 					break;
 				default:
 					inputs += inputValue;

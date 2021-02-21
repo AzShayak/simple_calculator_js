@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, height=device-height, initial-scale=1 user-scalable=no, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Simple Calculator</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			text-align: center;
+			font-size: 1.25rem;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			color: white;
+			border-radius: 4px;
+		}
+
+		body {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			background-color: #212121;
+		}
+
+		body>h3 {
+			padding: .5rem;
+			font-size: 1rem;
+			font-weight: bold;
+		}
+
+		body>h5 {
+			padding: .5rem;
+			font-size: .75rem;
+			font-weight: lighter;
+		}
+
+		table tr td {
+			width: 1px;
+			height: 1px;
+		}
+
+		table tr td input {
+			padding: .5rem;
+			text-align: end;
+			background-color: #212121;
+			border: 4px solid #BDBDBD;
+		}
+
+		table tr td button {
+			width: 100%;
+			height: 100%;
+			padding: .5rem;
+			background-color: #424242;
+			border: 4px solid transparent;
+		}
+
+		table tr td button:hover {
+			cursor: pointer;
+			border: 4px solid #BDBDBD;
+		}
+
+		table tr td .cl-button {
+			background-color: #880E4F;
+		}
+
+		table tr td .op-button {
+			background-color: #616161;
+		}
+
+		table tr td .ed-button {
+			background-color: #455A64;
+		}
+	</style>
+</head>
+
+<body>
+	<h3>CALCULATOR</h3>
+	<table cellspacing="8">
+		<tr>
+			<td colspan="4">
+				<input type="text" placeholder="0" id="screen" readonly>
+			</td>
+		</tr>
+		<tr>
+			<td><button class="cl-button">AC</button></td>
+			<td><button class="op-button">(</button></td>
+			<td><button class="op-button">)</button></td>
+			<td><button class="ed-button">⇐</button></td>
+		</tr>
+		<tr>
+			<td><button class="cl-button">C</button></td>
+			<td><button class="op-button">π</button></td>
+			<td><button class="op-button">^</button></td>
+			<td><button class="op-button">÷</button></td>
+		</tr>
+		<tr>
+			<td><button>7</button></td>
+			<td><button>8</button></td>
+			<td><button>9</button></td>
+			<td><button class="op-button">×</button></td>
+		</tr>
+		<tr>
+			<td><button>4</button></td>
+			<td><button>5</button></td>
+			<td><button>6</button></td>
+			<td><button class="op-button">-</button></td>
+		</tr>
+		<tr>
+			<td><button>1</button></td>
+			<td><button>2</button></td>
+			<td><button>3</button></td>
+			<td><button class="op-button">+</button></td>
+		</tr>
+		<tr>
+			<td colspan="2"><button>0</button></td>
+			<td><button>.</button></td>
+			<td><button class="ed-button">=</button></td>
+		</tr>
+	</table>
+	<h5>Made by Anisuzzaman Shayak<br>
+		Section : PC-D | ID : 181-15-1988
+	</h5>
+</body>
+<script>
+	buttons = document.querySelectorAll('button');
+	let screen = document.getElementById('screen');
+	screen.readOnly = true;
+	let inputs = '';
+
+	for (item of buttons) {
+		item.addEventListener('click', (event) => {
+			inputValue = event.target.innerText;
+			switch (inputValue) {
+				case 'AC':
+					location.reload();
+					break;
+				case 'C':
+					inputs = '';
+					screen.value = inputs;
+					break;
+				case '⇐':
+					inputs = inputs.slice(0, -1);
+					screen.value = inputs;
+					break;
+				case 'π':
+					inputs += '*3.1416';
+					screen.value = inputs;
+					break;
+				case '^':
+					inputs += '**';
+					screen.value = inputs;
+					break;
+				case '÷':
+					inputs += '/';
+					screen.value = inputs;
+					break;
+				case '×':
+					inputs += '*';
+					screen.value = inputs;
+					break;
+				case '=':
+					inputs = eval(inputs);
+					screen.value = inputs;
+					break;
+				default:
+					inputs += inputValue;
+					screen.value = inputs;
+					break;
+			}
+		})
+	}
+
+	window.onerror = function () {
+		inputs = '';
+		screen.value = 'INVALID OPERATION';
+	}
+
+</script>
+
+</html>
